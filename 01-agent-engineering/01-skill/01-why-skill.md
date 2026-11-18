@@ -82,7 +82,7 @@ pdf-processing/
     └── report-template.xlsx
 ```
 
-这里的目录只是组织示例，不是所有平台都必须遵循的统一规范。具体文件约定、脚本运行方式和加载行为，需要以目标 Agent 平台为准。
+这里的目录只是组织示例，不是所有平台都必须遵循的统一规范。具体文件约定、脚本运行方式和加载行为，需要以目标 Agent 平台为准。`references/` 用于存放供模型按需读取的说明文档；`assets/` 用于存放供脚本或最终产物直接消费的静态模板、图片等文件，通常不需要将其作为文本完整加载到模型上下文。
 
 ### 3.1 核心机制：渐进式披露（Progressive Disclosure）
 
@@ -230,9 +230,8 @@ description: Helps with documents.
 # 只说能力，没有触发场景
 description: Generates commit messages from git diffs.
 
-# 更明确：能力 + 使用场景
-description: Generate commit messages by analyzing git diffs.
-  Use when the user asks to write a commit message or review staged changes.
+# 更明确：能力 + 使用场景 + 排除边界
+description: Generate commit messages by analyzing git diffs. Use when the user asks to write a commit message or review staged changes. Do not use for branch management, rebasing, or PR code review.
 ```
 
 description 的措辞风格应与目标平台的约定保持一致。第三人称通常更容易写清楚能力主体，但不要把某一种写法误当成所有平台的硬性规范。
@@ -343,7 +342,7 @@ description 的措辞风格应与目标平台的约定保持一致。第三人�
 
 ## 7. 典型踩坑：从现象定位到解决
 
-下面这些是文件式 Skill 开发中值得重点测试的典型问题。它们是工程排查模式，不应直接当作个人项目经历；如果用于项目复盘或面试，需要替换成自己真实观察到的现象和数据。
+下面整理了文件式 Skill 开发中常见的 8 类故障模式。实际排查时，建议结合评测集日志与监控指标，定位问题发生在哪个环节。
 
 ### 坑 1：Skill 装了，但模型就是不触发
 
@@ -501,8 +500,8 @@ description 的措辞风格应与目标平台的约定保持一致。第三人�
 
 ## 延伸阅读
 
-- 下一篇：Progressive Disclosure——如何设计 Agent 的上下文加载策略
-- 后续专题：Skill、MCP、Tool、RAG 与 Subagent 的职责边界
-- 后续专题：如何构建 Skill 的触发评测与任务评测集
+- 下一篇：Progressive Disclosure——如何设计 Agent 的上下文加载策略（规划中）
+- 后续专题：Skill、MCP、Tool、RAG 与 Subagent 的职责边界（规划中）
+- 后续专题：如何构建 Skill 的触发评测与任务评测集（规划中）
 
 > **最后一句：Skill 的价值不是让 Prompt 变得更长，而是让重复任务的经验变成可复用、可验证、可演进的工程资产。**
