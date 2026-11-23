@@ -2,7 +2,7 @@
 
 > AI 参与开发后，验证的难点不在于“有没有测试”，而在于测试本身、执行过程和结论汇报都可能出自同一个 AI。验证体系要解决的，是让“已通过”这句话背后有可以复查的证据。
 >
-> **适用范围与时效说明：** 本文对应 [AI Coding 常见问题与风险分类](../01-problems/01-ai-coding-common-problems.md) 中的 17 绕过测试、18 测试覆盖不足、19 验证结果不可信和 32 效果难以评估。文中的机制属于工程实践建议，第 5 节的实验尚未实测。本文核对时间：2026 年 11 月。
+> **适用范围与时效说明：** 本文对应 [AI Coding 常见问题与治理要点](../01-problems/01-ai-coding-common-problems.md) 中的 17 绕过测试、18 测试覆盖不足、19 验证结果不可信和 32 效果难以评估。文中的机制属于工程实践建议，第 5 节的实验尚未实测。本文核对时间：2026 年 11 月。
 
 ## 1. TL;DR
 
@@ -371,7 +371,7 @@ for case in cases:
 
 ## 延伸阅读
 
-- [AI Coding 常见问题与风险分类](../01-problems/01-ai-coding-common-problems.md)：本文对应的问题定义
+- [AI Coding 常见问题与治理要点](../01-problems/01-ai-coding-common-problems.md)：本文对应的问题定义
 - Zhong, Raghunathan, Carlini, [ImpossibleBench: Measuring LLMs' Propensity of Exploiting Test Cases](https://arxiv.org/abs/2510.20270)：用需求与测试相互矛盾的任务，衡量 LLM Agent 利用测试用例走捷径的倾向
 - [DORA](https://dora.dev/)：软件交付效能研究，变更失败率等指标的来源
 - 下一篇（规划中）：Security & Compliance——依赖治理、提示词注入防护与审计

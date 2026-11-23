@@ -41,12 +41,12 @@
 
 | 主题 | 内容 | 状态 |
 | --- | --- | --- |
-| AI Coding Problems | AI Coding 常见问题、风险分类与后续工程治理方向 | 初稿 |
+| AI Coding Problems | AI Coding 常见问题、风险分类与治理要点 | 初稿 |
 | AI Coding Verification | 测试保护、可信的验证结果与效果评估 | 初稿 |
 
 **当前文章**
 
-- [AI Coding 常见问题与风险分类](./02-ai-coding/01-problems/01-ai-coding-common-problems.md)
+- [AI Coding 常见问题与治理要点](./02-ai-coding/01-problems/01-ai-coding-common-problems.md)
 - [AI Coding 验证体系：让“已通过”真正可信](./02-ai-coding/02-verification/01-ai-coding-verification.md)
 
 ## 后续规划
