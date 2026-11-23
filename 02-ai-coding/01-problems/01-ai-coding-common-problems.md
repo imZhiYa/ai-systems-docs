@@ -662,16 +662,20 @@ AI 生成代码时可能只关注正常执行流程，没有充分考虑系统�
 
 后续治理需要围绕完整的软件工程链路建立约束和验证机制，而不是只针对单个问题进行修补。
 
-| 治理方向 | 重点关注 |
-| --- | --- |
-| Context Engineering | 上下文组织、检索、压缩和持续管理 |
-| Requirement Engineering | 需求澄清、业务规则提取和影响范围分析 |
-| Architecture Constraints | 架构边界、模块职责和依赖约束 |
-| Code Quality Gate | 静态检查、代码审查和规范校验 |
-| Testing & Evaluation | 测试策略、自动化评测和验证可信度 |
-| Security & Compliance | 安全扫描、依赖治理和审计 |
-| Workflow Engineering | 任务拆分、工具调用和交付流程 |
-| Runtime Reliability | 可观测性、数据一致性和故障恢复 |
+下表列出各治理方向主要对应的问题编号。每个问题只归入最主要的一个方向，33 项全部覆盖；实际治理中，多数问题需要多个方向配合。
+
+| 治理方向 | 重点关注 | 主要对应问题 |
+| --- | --- | --- |
+| Context Engineering | 上下文组织、检索、压缩和持续管理 | 01、22、23、27 |
+| Requirement Engineering | 需求澄清、业务规则提取和影响范围分析 | 02、04、05 |
+| Architecture Constraints | 架构边界、模块职责和依赖约束 | 03、07、09、20 |
+| Code Quality Gate | 静态检查、代码审查和规范校验 | 06、08、10、11、25 |
+| Testing & Evaluation | 测试策略、自动化评测和验证可信度 | 14、15、16、29 |
+| Security & Compliance | 安全扫描、依赖治理和审计 | 12、13、28 |
+| Workflow Engineering | 任务拆分、工具调用和交付流程 | 17、18、19、21、24、26 |
+| Runtime Reliability | 可观测性、数据一致性和故障恢复 | 30、31、32、33 |
+
+> 注：26（开发者技能退化）主要依赖团队培养和评审机制，不完全属于技术治理范畴，暂归入 Workflow Engineering。
 
 ## 5. 文档定位与演进规划
 
