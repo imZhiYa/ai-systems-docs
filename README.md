@@ -37,6 +37,8 @@
 
 围绕 AI 如何可靠地参与软件工程交付展开。
 
+主题导航：[AI Coding Engineering](./02-ai-coding/README.md)
+
 | 主题 | 内容 | 状态 |
 | --- | --- | --- |
 | AI Coding Problems | AI Coding 常见问题、风险分类与后续工程治理方向 | 初稿 |
@@ -51,11 +53,11 @@
 
 - **Skill Engineering**：真实任务提取 Skill、Description 路由与评测、`SKILL.md` 结构、References / Scripts 的组织方式、安全边界与迭代机制。
 - **Agent Architecture**：Agent Harness、任务状态管理、工具执行治理、多 Agent 协作与失败恢复。
+- **AI Coding Engineering**：需求理解、代码复用、质量门禁、自动化验证与生产可靠性。
 - **Context Engineering**：上下文预算、渐进式披露、压缩策略与上下文质量评估。
 - **Memory Engineering**：记忆生命周期、冲突消解、过期清理与记忆质量评测。
 - **RAG Engineering**：分块、索引、召回与重排，以及端到端评测。
 - **Runtime Engineering**：流式响应、高并发连接管理、超时控制、背压与可观测性。
-- **AI Coding Engineering**：需求理解、代码复用、质量门禁、自动化验证与生产可靠性。
 
 ## Engineering Principles
 
