@@ -737,10 +737,12 @@ AI 生成代码时可能只关注正常执行流程，没有充分考虑系统�
 | Requirement Engineering | 需求澄清、业务规则提取和影响范围分析 | 02、04、05、06 |
 | Architecture Constraints | 架构边界、模块职责和依赖约束 | 03、08、10、23 |
 | Code Quality Gate | 静态检查、代码审查和规范校验 | 07、09、11、12、28 |
-| Testing & Evaluation | 测试策略、自动化评测和验证可信度 | 17、18、19、32 |
+| [Testing & Evaluation](../02-verification/01-ai-coding-verification.md) | 测试策略、自动化评测和验证可信度 | 17、18、19、32 |
 | Security & Compliance | 安全扫描、依赖治理和审计 | 13、14、15、16、31 |
 | Workflow Engineering | 任务拆分、工具调用和交付流程 | 20、21、22、24、27、29 |
 | Runtime Reliability | 可观测性、数据一致性和故障恢复 | 33、34、35、36 |
+
+治理方向名称带链接的，表示已有对应的实践文章。
 
 > 注：29（开发者技能退化）主要依赖团队培养和评审机制，不完全属于技术治理范畴，暂归入 Workflow Engineering。
 
