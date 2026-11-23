@@ -309,7 +309,7 @@ AI 可能推荐或引入根本不存在的软件包。攻击者如果提前用�
 
 **参考**
 
-- Spracklen et al., *We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs*（USENIX Security 2025）：代码模型编造包名的比例从商业模型的 5.2% 到开源模型的 21.7% 不等。
+- Spracklen et al., [We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs](https://arxiv.org/abs/2406.10279)（USENIX Security 2025）：测试 16 个代码模型后发现，编造包名的平均比例在商业模型中至少为 5.2%，在开源模型中达到 21.7%。
 
 #### 15. 提示词注入（Prompt Injection）
 
