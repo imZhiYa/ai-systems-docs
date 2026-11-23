@@ -6,7 +6,7 @@
 
 | 文档 | 内容 | 状态 |
 | --- | --- | --- |
-| [AI Coding 常见问题与工程治理](./01-problems/01-ai-coding-common-problems.md) | AI Coding 常见问题分类、工程影响与后续治理方向 | 初稿 |
+| [AI Coding 常见问题与风险分类](./01-problems/01-ai-coding-common-problems.md) | AI Coding 常见问题分类、工程影响与后续治理方向 | 初稿 |
 
 ## 内容范围
 
