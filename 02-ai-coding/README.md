@@ -6,7 +6,7 @@
 
 | 文档 | 内容 | 状态 |
 | --- | --- | --- |
-| [AI Coding 常见问题与风险分类](./01-problems/01-ai-coding-common-problems.md) | AI Coding 常见问题分类、工程影响与后续治理方向 | 初稿 |
+| [AI Coding 常见问题与治理要点](./01-problems/01-ai-coding-common-problems.md) | AI Coding 常见问题分类、工程影响与治理要点 | 初稿 |
 | [AI Coding 验证体系：让“已通过”真正可信](./02-verification/01-ai-coding-verification.md) | 测试保护、覆盖设计、可信的验证结果与效果评估 | 初稿 |
 
 ## 内容范围
