@@ -45,7 +45,7 @@
 
 **当前文章**
 
-- [AI Coding 常见问题与工程治理](./02-ai-coding/01-problems/01-ai-coding-common-problems.md)
+- [AI Coding 常见问题与风险分类](./02-ai-coding/01-problems/01-ai-coding-common-problems.md)
 
 ## 后续规划
 
