@@ -13,6 +13,7 @@
 主要关注方向：
 
 - **Agent Engineering**：Agent 架构、Harness、任务执行、上下文管理与能力编排。
+- **AI Coding Engineering**：AI 参与软件开发后的工程问题、质量风险与治理实践。
 - **Context Engineering**：上下文构建、压缩、懒加载与信息边界。
 - **Memory Engineering**：记忆写入、检索、更新、冲突处理与防止记忆污染。
 - **RAG Engineering**：文档处理、分块策略、检索质量与评测。
@@ -32,6 +33,18 @@
 
 - [Agent Skill 实战：从 Prompt 膨胀到可维护的能力模块](./01-agent-engineering/01-skill/01-why-skill.md)
 
+### AI Coding Engineering
+
+围绕 AI 如何可靠地参与软件工程交付展开。
+
+| 主题 | 内容 | 状态 |
+| --- | --- | --- |
+| AI Coding Problems | AI Coding 常见问题、风险分类与后续工程治理方向 | 初稿 |
+
+**当前文章**
+
+- [AI Coding 常见问题与工程治理](./02-ai-coding/01-problems/01-ai-coding-common-problems.md)
+
 ## 后续规划
 
 以下是计划持续补充的主题，不代表相关内容已经全部实现或验证：
@@ -42,6 +55,7 @@
 - **Memory Engineering**：记忆生命周期、冲突消解、过期清理与记忆质量评测。
 - **RAG Engineering**：分块、索引、召回与重排，以及端到端评测。
 - **Runtime Engineering**：流式响应、高并发连接管理、超时控制、背压与可观测性。
+- **AI Coding Engineering**：需求理解、代码复用、质量门禁、自动化验证与生产可靠性。
 
 ## Engineering Principles
 
