@@ -126,6 +126,7 @@ AI 主要关注当前文件或局部代码，缺乏对整个项目结构、模�
 - 给 AI 提供语义级的代码导航工具（如基于 LSP 的“查找引用”“调用层级”），不只靠文本搜索；修改接口、公共方法或数据结构前，先用它列出所有调用方和依赖方。
 - 跨服务调用、配置文件引用和数据库表依赖，代码导航工具也查不到，需要登记在服务依赖清单或接口契约文件里。
 - 跨模块改动要运行相关模块的测试，而不只是当前模块的测试。
+- 详见：[AI Coding 架构约束](../09-architecture/01-ai-coding-architecture.md) 4.1 节。
 
 #### 04. 隐式业务规则缺失（Implicit Business Rules）
 
@@ -254,6 +255,7 @@ AI 在实现简单需求时，可能引入不必要的抽象层、设计模式�
 - 在说明文件中写明“优先采用最简单可行的实现”，新增抽象层需要说明理由。
 - 审查时对新增的接口、抽象类和设计模式逐一追问：现在是否已经有第二个使用场景。
 - 单次任务新增的文件数量明显超出预期时，要求 AI 说明原因。
+- 详见：[AI Coding 架构约束](../09-architecture/01-ai-coding-architecture.md) 4.3 节。
 
 #### 09. 编码规范与项目约定不一致（Inconsistent Conventions）
 
@@ -303,6 +305,7 @@ AI 生成代码时没有充分遵循项目现有的编码规范和实现习惯�
 - 在说明文件中写明：新增工具类或公共方法前，先按后缀、目录和标识检索已有实现，并在总结中列出检索结果。
 - 用脚本按后缀和标识自动生成公共组件清单，供 AI 读取，避免手工维护的清单过时。
 - 在 CI 中检查命名约定是否被遵守（例如 `*Utils` 类只能放在约定目录），并用重复代码检测工具发现新增的重复代码。
+- 详见：[AI Coding 架构约束](../09-architecture/01-ai-coding-architecture.md) 4.2 节。
 
 #### 11. 代码正确性不足（Incorrect Code Generation）
 
@@ -640,6 +643,7 @@ AI 倾向于优先完成当前任务，可能留下临时实现、重复代码�
 - 临时方案标注 TODO 并关联问题单，定期清理。
 - 在任务的完成标准里加上清理项：删掉调试输出、注释掉的代码和没用到的函数；CI 检查新增的调试语句，以及没关联问题单的 TODO。
 - 用静态分析工具跟踪复杂度、重复率等指标的变化趋势。
+- 详见：[AI Coding 架构约束](../09-architecture/01-ai-coding-architecture.md) 4.4 节。
 
 #### 24. 破坏性操作与权限越界（Destructive Operations & Permission Overreach）
 
@@ -992,14 +996,14 @@ AI 生成代码时可能只关注正常执行流程，没有充分考虑系统�
 | --- | --- | --- |
 | [Context Engineering](../08-context/01-ai-coding-context.md) | 上下文组织、检索、压缩和持续管理 | 01、25、26、30 |
 | [Requirement Engineering](../05-requirements/01-ai-coding-requirements.md) | 需求澄清、业务规则提取和影响范围分析 | 02、04、05、06 |
-| Architecture Constraints | 架构边界、模块职责和依赖约束 | 03、08、10、23 |
+| [Architecture Constraints](../09-architecture/01-ai-coding-architecture.md) | 架构边界、模块职责和依赖约束 | 03、08、10、23 |
 | [Code Quality Gate](../07-quality-gate/01-ai-coding-quality-gate.md) | 静态检查、代码审查和规范校验 | 07、09、11、12、28 |
 | [Testing & Evaluation](../02-verification/01-ai-coding-verification.md) | 测试策略、自动化评测和验证可信度 | 17、18、19、32 |
 | [Security & Compliance](../03-security/01-ai-coding-security.md) | 安全扫描、依赖治理和审计 | 13、14、15、16、31 |
 | [Workflow Engineering](../06-workflow/01-ai-coding-workflow.md) | 任务拆分、工具调用和交付流程 | 20、21、22、24、27、29 |
 | [Runtime Reliability](../04-runtime/01-ai-coding-runtime-reliability.md) | 可观测性、数据一致性和故障恢复 | 33、34、35、36 |
 
-治理方向名称带链接的，表示已有对应的实践文章。
+8 个治理方向都已有对应的实践文章，点击治理方向的名称即可阅读。
 
 > 注：29（开发者技能退化）主要依赖团队培养和评审机制，不完全属于技术治理范畴，暂归入 Workflow Engineering。
 
