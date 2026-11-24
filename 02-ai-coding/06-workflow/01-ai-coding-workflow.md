@@ -4,7 +4,7 @@
 >
 > 本文的设计是一套**分级路由 + 产物驱动 + 上下文物理隔离 + 概率与确定性交错**的工程流水线：让工具查事实，让蓝队建规约，让隔离的红队找漏洞，让人做裁决，让确定性的 CI 和运行时不变量兜底，最后把每一次线上问题编译回系统规则。
 >
-> **适用范围与时效说明：** 本文对应 [AI Coding 常见问题与治理要点](../01-problems/01-ai-coding-common-problems.md) 中 Workflow Engineering 方向的 20、21、22、27、29；24 破坏性操作与权限越界见 [AI Coding 安全与合规](../03-security/01-ai-coding-security.md) 4.5 节。本文同时负责把前几篇的机制编排成一条流水线，各阶段的具体做法以对应文章为准。文中的机制属于工程实践建议，第 8 节是示意案例，第 9 节的实验尚未实测。各 Agent 工具对子代理、命令和非交互运行的支持不同，文中以 Claude Code 为例，以其当前文档为准。本文核对时间：2026 年 11 月。
+> **适用范围与时效说明：** 本文对应 [AI Coding 常见问题与治理要点](../01-problems/01-ai-coding-common-problems.md) 中 Workflow Engineering 方向的 20、21、22、27、29；执行循环的权限边界（24 破坏性操作与权限越界）归入 Security & Compliance，见 [AI Coding 安全与合规](../03-security/01-ai-coding-security.md) 4.5 节。本文同时负责把前几篇的机制编排成一条流水线，各阶段的具体做法以对应文章为准。文中的机制属于工程实践建议，第 8 节是示意案例，第 9 节的实验尚未实测。各 Agent 工具对子代理、命令和非交互运行的支持不同，文中以 Claude Code 为例，以其当前文档为准。本文核对时间：2026 年 11 月。
 
 ## 1. TL;DR
 
@@ -97,7 +97,7 @@ Agent 之间不传递聊天记录。所有交接只通过 Git 中的结构化文
         ▼
 ┌───────────────────────────────────────────────────────────────┐
 │ Phase 0：自动定级路由（确定性）                                │
-│ 按涉及的模块、路径、表和内核区，路由到 L1 / L2 / L3            │
+│ 按涉及的模块、路径、表和平台层，路由到 L1 / L2 / L3            │
 └───────┬───────────────────────────┬───────────────────────────┘
         │ L1：跳过 Phase 1 和 3       │ L2 / L3：进入完整流水线
         │                           ▼
@@ -503,7 +503,7 @@ allowed_paths:                            # 允许修改的路径，按 fnmatch 
   - tests/order/address/*                 # Code Agent 自己的单元测试
   - .agent/tasks/FEAT-2048.yaml
 forbidden_paths:                          # 即使在 allowed_paths 内也不允许修改
-  - tests/acceptance/FEAT-2048/*          # Test Agent 生成的验收测试
+  - tests/spec-bdd/FEAT-2048/*            # Test Agent 依据 Spec 生成的规约测试
   - src/order/address/legacy/*
 
 environment: .devcontainer/devcontainer.json

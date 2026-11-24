@@ -999,8 +999,8 @@ AI 生成代码时可能只关注正常执行流程，没有充分考虑系统�
 | [Architecture Constraints](../09-architecture/01-ai-coding-architecture.md) | 架构边界、模块职责和依赖约束 | 03、08、10、23 |
 | [Code Quality Gate](../07-quality-gate/01-ai-coding-quality-gate.md) | 静态检查、代码审查和规范校验 | 07、09、11、12、28 |
 | [Testing & Evaluation](../02-verification/01-ai-coding-verification.md) | 测试策略、自动化评测和验证可信度 | 17、18、19、32 |
-| [Security & Compliance](../03-security/01-ai-coding-security.md) | 安全扫描、依赖治理和审计 | 13、14、15、16、31 |
-| [Workflow Engineering](../06-workflow/01-ai-coding-workflow.md) | 任务拆分、工具调用和交付流程 | 20、21、22、24、27、29 |
+| [Security & Compliance](../03-security/01-ai-coding-security.md) | 安全扫描、依赖治理和审计 | 13、14、15、16、24、31 |
+| [Workflow Engineering](../06-workflow/01-ai-coding-workflow.md) | 任务拆分、工具调用和交付流程 | 20、21、22、27、29 |
 | [Runtime Reliability](../04-runtime/01-ai-coding-runtime-reliability.md) | 可观测性、数据一致性和故障恢复 | 33、34、35、36 |
 
 8 个治理方向都已有对应的实践文章，点击治理方向的名称即可阅读。
