@@ -559,7 +559,7 @@ AI 在完成局部需求时，可能修改超出任务范围的文件、模块�
 - 任务开始时明确允许修改的文件和模块范围。
 - 重构、格式化和功能改动分开提交。
 - 在 CI 中对改动的文件数或行数设置提醒阈值，超出时要求说明原因。
-- 详见：[AI Coding 工作流](../06-workflow/01-ai-coding-workflow.md) 4.1 节。
+- 详见：[AI Coding 工作流](../06-workflow/01-ai-coding-workflow.md) 6.1 节。
 
 #### 21. 依赖与环境问题（Dependency and Environment Issues）
 
@@ -584,7 +584,7 @@ AI 生成代码时没有充分考虑项目实际运行环境、依赖关系和�
 - 用容器或开发容器（Dev Container）固定运行时版本和依赖，让 AI 在与 CI 一致的环境中工作。
 - 把运行时版本、构建命令和各环境的配置差异写进说明文件。
 - 构建配置和依赖文件的修改需要单独审查。
-- 详见：[AI Coding 工作流](../06-workflow/01-ai-coding-workflow.md) 4.2 节。
+- 详见：[AI Coding 工作流](../06-workflow/01-ai-coding-workflow.md) 6.2 节。
 
 #### 22. 调试循环过长（Long Debugging Loop）
 
@@ -609,7 +609,7 @@ AI 在面对错误时，可能缺少有效的根因分析能力，通过不断�
 - 要求 AI 修改代码前先复现问题，并给出根因分析。
 - 设置尝试次数上限，例如连续 3 次（次数按项目调整）修复失败后停止并汇报，由人介入。
 - 每次修改只验证一个假设，并记录结果。
-- 详见：[AI Coding 工作流](../06-workflow/01-ai-coding-workflow.md) 4.3 节。
+- 详见：[AI Coding 工作流](../06-workflow/01-ai-coding-workflow.md) 6.3 节。
 
 #### 23. 技术债累积（Technical Debt Accumulation）
 
@@ -737,7 +737,7 @@ AI Coding 在持续开发过程中可能重复加载大量历史对话、项目�
 - 相互独立的任务并行执行，减少等待。
 - 为工具调用设置超时和有限次数的重试。
 - 如果多次重试是因为结果不符合要求，先改进任务描述，而不是继续重试。
-- 详见：[AI Coding 工作流](../06-workflow/01-ai-coding-workflow.md) 4.4 节。
+- 详见：[AI Coding 工作流](../06-workflow/01-ai-coding-workflow.md) 6.4 节。
 
 #### 28. 生成速度与理解速度失衡（Generation-Understanding Gap）
 
@@ -788,7 +788,7 @@ AI 生成代码的速度可能远高于开发者理解、审查和验证代码�
 - 代码审查时要求作者解释实现原理，而不只是确认结果。
 - 关键模块的设计和排障，保留由开发者主导的环节。
 - 定期组织不依赖 AI 的排障复盘和代码阅读。
-- 详见：[AI Coding 工作流](../06-workflow/01-ai-coding-workflow.md) 4.5 节。
+- 详见：[AI Coding 工作流](../06-workflow/01-ai-coding-workflow.md) 5.4 节。
 
 #### 30. 知识难以沉淀（Knowledge Loss）
 
