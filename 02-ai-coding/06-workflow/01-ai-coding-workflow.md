@@ -148,7 +148,7 @@ Agent 之间不传递聊天记录。所有交接只通过 Git 中的结构化文
 | 1 事实考古 | 采集依赖树、单测、表结构与生产统计、真实下游、领域规则 | 考古 Agent 把代码逻辑翻译成规则清单，标注行号 | `01-context-truth.md` | — | 需求工程 4.2、4.3 |
 | 2 规约编译 | 检查决策表无“待定”、BDD 可解析 | Spec Agent 抽取歧义，编译规约 | `02-clarifications.md`、`03-spec.md` | 卡点 A | 需求工程 4.1 |
 | 3 隔离红队 | 检查每条问题有失败场景和决策 | 红队 Agent，L3 分业务和架构两个视角 | `04-redteam-audit.md` | 卡点 B | 本文 5.3、需求工程 4.4 |
-| 4 测试与编码 | CI 门禁，生成验证结果 | Test Agent 与 Code Agent 隔离工作 | 代码、测试、`05-verification.json` | 越界或预算耗尽时介入；合并前能解释改动 | 本文 5.3、第 6 节 |
+| 4 测试与编码 | CI 门禁，生成验证结果 | Test Agent 与 Code Agent 隔离工作 | 代码、测试、`05-verification.json` | 越界或预算耗尽时介入；合并前能解释改动 | 本文 5.3、第 6 节；[代码质量门禁](../07-quality-gate/01-ai-coding-quality-gate.md) |
 | 5 渐进发布 | 金丝雀分析、自动回滚 | — | — | 异常时处理 | 运行可靠性 4.3 |
 | 6 免疫闭环 | 新规则经过 CI | 复盘 Agent 提 PR | 规则、用例、画像的更新 | 审批 PR | 运行可靠性 4.4 |
 
@@ -857,5 +857,6 @@ disable-model-invocation: true
 - [Claude Code 子代理文档](https://docs.anthropic.com/en/docs/claude-code/sub-agents)：子代理的定义方式与上下文隔离
 - [Development Containers](https://containers.dev/)：Dev Container 规范
 - [git-worktree 文档](https://git-scm.com/docs/git-worktree)：在同一个仓库中同时检出多个工作目录
+- 下一篇：[AI Coding 代码质量门禁：别让“看起来对”通过审查](../07-quality-gate/01-ai-coding-quality-gate.md)
 
 > **最后一句：让工具查事实，让蓝队建规约，让隔离的红队找漏洞，让人做裁决，让确定性的 CI 和运行时不变量兜底，最后把每一次线上问题编译回系统规则。**

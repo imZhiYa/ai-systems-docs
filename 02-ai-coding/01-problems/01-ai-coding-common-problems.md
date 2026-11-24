@@ -229,6 +229,7 @@ AI 依据训练数据中的 API 知识生成代码，而没有查证项目实际
 - 让 AI 先读取依赖声明文件（如 `package.json`、`pom.xml`），确认实际版本后再写代码。
 - 为 AI 提供当前版本的官方文档，或通过工具查询文档，而不是依赖训练数据。
 - 生成的代码必须实际编译和运行，不能只看代码文本判断是否可用。
+- 详见：[AI Coding 代码质量门禁](../07-quality-gate/01-ai-coding-quality-gate.md) 5.2.2 节。
 
 #### 08. 过度工程化（Over-Engineering）
 
@@ -275,6 +276,7 @@ AI 生成代码时没有充分遵循项目现有的编码规范和实现习惯�
 - 用格式化工具和 Lint 规则固化编码规范，并在 CI 中强制执行。
 - 把命名、分层、异常处理、日志等项目约定写进说明文件，并给出可参考的现有代码路径。
 - 让 AI 先阅读同类代码，再按相同模式实现。
+- 详见：[AI Coding 代码质量门禁](../07-quality-gate/01-ai-coding-quality-gate.md) 5.1、5.2.2 节。
 
 #### 10. 代码重复生成与已有能力重复建设（Duplicate Implementation）
 
@@ -324,6 +326,7 @@ AI 生成的代码在语法和局部逻辑上看似正确，但实际业务逻�
 - 对关键计算和状态更新逻辑，要求 AI 逐条说明与需求的对应关系，并由审查者逐条核对。
 - 用变异测试检查现有测试能否发现逻辑错误。
 - 详见：[AI Coding 验证体系](../02-verification/01-ai-coding-verification.md) 4.2 节。
+- 详见：[AI Coding 代码质量门禁](../07-quality-gate/01-ai-coding-quality-gate.md) 5.3.1、5.4 节。
 
 #### 12. 代码健壮性不足（Insufficient Robustness）
 
@@ -348,6 +351,7 @@ AI 生成代码时容易优先关注正常执行路径，而忽略异常场景�
 - 按检查清单逐项检查：空值、超时、非法输入、资源释放、重试上限和退避策略。
 - 统一封装外部调用的超时、重试和失败处理，要求 AI 复用，而不是各自实现。
 - 在 CI 中运行静态分析，检测资源泄漏和未处理的异常。
+- 详见：[AI Coding 代码质量门禁](../07-quality-gate/01-ai-coding-quality-gate.md) 5.2.1、5.3.2 节。
 
 ### 3.3 安全、合规与验证风险
 
@@ -482,6 +486,7 @@ AI 在遇到测试失败时，在需求和预期行为没有变化的情况下�
 - 在 CI 中检测测试文件被删除、新增跳过标记和断言减少，发现时要求在 PR 中说明理由，并由人工确认。
 - 核心业务规则维护一组 Agent 看不到的验收测试，作为兜底。
 - 详见：[AI Coding 验证体系](../02-verification/01-ai-coding-verification.md) 4.1 节。
+- 详见：[AI Coding 代码质量门禁](../07-quality-gate/01-ai-coding-quality-gate.md) 5.2.1 节。
 
 #### 18. 测试覆盖不足（Insufficient Test Coverage）
 
@@ -761,6 +766,7 @@ AI 生成代码的速度可能远高于开发者理解、审查和验证代码�
 - 限制单个 PR 的规模，大任务拆成可以独立审查的小改动。
 - 要求 AI 在 PR 中说明改动意图、关键设计和风险点，帮助审查。
 - 开发者在合并前必须能解释改动的核心逻辑。
+- 详见：[AI Coding 代码质量门禁](../07-quality-gate/01-ai-coding-quality-gate.md) 5.4、7.5 节。
 
 ### 3.6 团队与组织管理问题
 
@@ -983,7 +989,7 @@ AI 生成代码时可能只关注正常执行流程，没有充分考虑系统�
 | Context Engineering | 上下文组织、检索、压缩和持续管理 | 01、25、26、30 |
 | [Requirement Engineering](../05-requirements/01-ai-coding-requirements.md) | 需求澄清、业务规则提取和影响范围分析 | 02、04、05、06 |
 | Architecture Constraints | 架构边界、模块职责和依赖约束 | 03、08、10、23 |
-| Code Quality Gate | 静态检查、代码审查和规范校验 | 07、09、11、12、28 |
+| [Code Quality Gate](../07-quality-gate/01-ai-coding-quality-gate.md) | 静态检查、代码审查和规范校验 | 07、09、11、12、28 |
 | [Testing & Evaluation](../02-verification/01-ai-coding-verification.md) | 测试策略、自动化评测和验证可信度 | 17、18、19、32 |
 | [Security & Compliance](../03-security/01-ai-coding-security.md) | 安全扫描、依赖治理和审计 | 13、14、15、16、31 |
 | [Workflow Engineering](../06-workflow/01-ai-coding-workflow.md) | 任务拆分、工具调用和交付流程 | 20、21、22、24、27、29 |
