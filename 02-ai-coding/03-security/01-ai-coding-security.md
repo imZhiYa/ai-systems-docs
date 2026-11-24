@@ -484,6 +484,6 @@ for case in cases:
 - [OWASP GenAI Security Project](https://genai.owasp.org/)：2025 年 12 月发布了 Agentic 应用十大风险，覆盖自主调用工具的 Agent 特有的风险
 - Spracklen et al., [We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs](https://arxiv.org/abs/2406.10279)（USENIX Security 2025）：代码模型编造包名的研究
 - [Demystifying Prompt Injection Attacks on Agentic AI Coding Editors](https://arxiv.org/abs/2509.22040)：针对 AI 编程编辑器的提示词注入攻击评测
-- 下一篇（规划中）：Runtime Reliability——让 AI 生成的代码在生产环境中可靠运行
+- 下一篇：[AI Coding 运行可靠性：AI 看不到的生产环境](../04-runtime/01-ai-coding-runtime-reliability.md)
 
 > **最后一句：Agent 能做的事情越多，攻击面就越大。安全与合规的价值，不是让 Agent 什么都不能做，而是让它能做的每一件事，都在可控、可查的范围之内。**

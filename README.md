@@ -44,12 +44,14 @@
 | AI Coding Problems | AI Coding 常见问题、风险分类与治理要点 | 初稿 |
 | AI Coding Verification | 测试保护、可信的验证结果与效果评估 | 初稿 |
 | AI Coding Security | 生成代码安全、依赖治理、提示词注入防护、权限控制与审计 | 初稿 |
+| AI Coding Runtime Reliability | 生产上下文左移、确定性验证、运行时防御与反馈闭环 | 初稿 |
 
 **当前文章**
 
 - [AI Coding 常见问题与治理要点](./02-ai-coding/01-problems/01-ai-coding-common-problems.md)
 - [AI Coding 验证体系：当开发过程变成黑盒](./02-ai-coding/02-verification/01-ai-coding-verification.md)
 - [AI Coding 安全与合规：当 Agent 也成为攻击面](./02-ai-coding/03-security/01-ai-coding-security.md)
+- [AI Coding 运行可靠性：AI 看不到的生产环境](./02-ai-coding/04-runtime/01-ai-coding-runtime-reliability.md)
 
 ## 后续规划
 

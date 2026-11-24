@@ -881,6 +881,7 @@ AI 生成的代码可能在局部测试或开发环境中表现正常，但进�
 - 在接近生产的环境中做压测和故障注入，验证真实流量和依赖异常下的表现。
 - 在说明文件里列出新增外部调用、定时任务和消息消费时必须补的日志、指标和告警；缺这些的代码，审查不通过。
 - 用灰度发布和功能开关控制影响范围，出现问题时能够快速回退。
+- 详见：[AI Coding 运行可靠性](../04-runtime/01-ai-coding-runtime-reliability.md) 4.2、4.3 节。
 
 #### 34. 数据演进问题（Data Evolution Issues）
 
@@ -906,6 +907,7 @@ AI 生成数据库变更和业务代码时，可能忽略历史数据兼容、Sc
 - 迁移目录（如 `db/migration/`）下的改动，要求 AI 同时给出回滚脚本和发布顺序说明，并在接近生产规模的数据副本上演练。如果所用工具支持按目录加载规则，就把迁移规范设成在这个目录下自动生效。
 - 大表变更前评估锁表和性能影响，安排在业务低峰期执行。
 - CI 检查迁移改动是否附带回滚脚本；迁移上线前，由 DBA 或模块负责人审查确认。
+- 详见：[AI Coding 运行可靠性](../04-runtime/01-ai-coding-runtime-reliability.md) 4.3 节。
 
 #### 35. 并发与分布式问题（Concurrency and Distributed System Issues）
 
@@ -931,6 +933,7 @@ AI 在生成业务代码时，可能忽略多线程、分布式环境和跨系�
 - 用乐观锁、分布式锁或数据库约束防止并发冲突。
 - 数据库与消息队列之间的一致性，可以采用事务性发件箱（Outbox）等成熟模式。
 - 用架构测试（如 Java 的 ArchUnit）在 CI 中检查消息消费者是否继承了幂等基类；涉及资金和库存的并发逻辑需要人工审查。
+- 详见：[AI Coding 运行可靠性](../04-runtime/01-ai-coding-runtime-reliability.md) 4.2、4.3 节。
 
 #### 36. 故障恢复机制缺失（Failure Recovery Gaps）
 
@@ -955,6 +958,7 @@ AI 生成代码时可能只关注正常执行流程，没有充分考虑系统�
 - 为外部依赖配置超时、熔断、降级和限流。
 - 跨系统操作在实现前，要求 AI 先写出失败矩阵：每一步失败时系统处于什么状态、怎么补偿；失败矩阵经人工评审确认后再实现，上线后定期对账。
 - 长任务记录执行进度，支持从断点恢复。
+- 详见：[AI Coding 运行可靠性](../04-runtime/01-ai-coding-runtime-reliability.md) 4.1、4.3 节。
 
 ## 4. 后续工程治理方向
 
@@ -973,7 +977,7 @@ AI 生成代码时可能只关注正常执行流程，没有充分考虑系统�
 | [Testing & Evaluation](../02-verification/01-ai-coding-verification.md) | 测试策略、自动化评测和验证可信度 | 17、18、19、32 |
 | [Security & Compliance](../03-security/01-ai-coding-security.md) | 安全扫描、依赖治理和审计 | 13、14、15、16、31 |
 | Workflow Engineering | 任务拆分、工具调用和交付流程 | 20、21、22、24、27、29 |
-| Runtime Reliability | 可观测性、数据一致性和故障恢复 | 33、34、35、36 |
+| [Runtime Reliability](../04-runtime/01-ai-coding-runtime-reliability.md) | 可观测性、数据一致性和故障恢复 | 33、34、35、36 |
 
 治理方向名称带链接的，表示已有对应的实践文章。
 
