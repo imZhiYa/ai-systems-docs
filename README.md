@@ -53,7 +53,7 @@
 - [AI Coding 验证体系：当开发过程变成黑盒](./02-ai-coding/02-verification/01-ai-coding-verification.md)
 - [AI Coding 安全与合规：当 Agent 也成为攻击面](./02-ai-coding/03-security/01-ai-coding-security.md)
 - [AI Coding 运行可靠性：AI 看不到的生产环境](./02-ai-coding/04-runtime/01-ai-coding-runtime-reliability.md)
-- [AI Coding 需求工程：从自然语言聊天到对抗式 Spec](./02-ai-coding/05-requirements/01-ai-coding-requirements.md)
+- [AI Coding 需求工程：别让 AI 顺着错误的需求狂奔](./02-ai-coding/05-requirements/01-ai-coding-requirements.md)
 
 ## 后续规划
 
