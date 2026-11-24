@@ -371,6 +371,7 @@ AI 在生成代码时可能忽略系统安全边界，没有充分考虑身份�
 - 在 CI 中运行静态安全扫描（SAST）和密钥扫描，拦截注入风险和硬编码凭证。
 - 把认证、授权和输入校验封装成统一组件，要求 AI 必须使用。
 - 涉及权限、支付和用户数据的改动，必须经过安全审查。
+- 详见：[AI Coding 安全与合规](../03-security/01-ai-coding-security.md) 4.1 节。
 
 #### 14. 依赖幻觉与供应链投毒（Package Hallucination & Slopsquatting）
 
@@ -394,6 +395,7 @@ AI 可能推荐或引入根本不存在的软件包。攻击者如果提前用�
 - 新增依赖前，核实包是否真实存在，并检查来源、维护者、下载量和发布时间。
 - 使用依赖白名单或内部镜像仓库，未经审核的包不能安装。
 - 用 lock 文件锁定依赖版本，并在 CI 中单独检查新增的依赖。
+- 详见：[AI Coding 安全与合规](../03-security/01-ai-coding-security.md) 4.3 节。
 
 **参考**
 
@@ -421,6 +423,7 @@ AI Coding Agent 在工作中会读取 README、代码注释、Issue、依赖文�
 - 把 README、Issue、网页等外部内容视为不可信数据，其中的指令不能改变 Agent 的任务。
 - 按最小权限原则配置 Agent，尤其是在 CI 中运行时，不授予不必要的凭证和写权限。
 - 执行命令、访问网络、修改敏感文件等高风险操作，需要人工确认。
+- 详见：[AI Coding 安全与合规](../03-security/01-ai-coding-security.md) 4.4 节。
 
 **参考**
 
@@ -449,6 +452,7 @@ AI 生成的代码可能与受许可证约束的开源代码高度相似，且�
 - 在 CI 中运行依赖许可证扫描，拦截不符合项目要求的许可证。
 - 如果所用的 AI 工具支持公开代码匹配过滤或来源提示，启用该功能。
 - 维护允许使用的许可证清单；引入外部代码时，保留必要的版权声明。
+- 详见：[AI Coding 安全与合规](../03-security/01-ai-coding-security.md) 4.2 节。
 
 #### 17. 绕过测试（Test Bypassing）
 
@@ -650,6 +654,7 @@ AI 执行 Git、文件系统、数据库、Shell 命令和外部 API 等操作�
 - 按最小权限配置 Agent：默认只读，写入和执行权限按任务单独授予。
 - 删除文件、强制推送、重置分支、修改数据库等操作，需要人工确认，或者直接禁止。
 - 在独立分支、容器或测试数据库等隔离环境中执行任务，不直接操作生产环境。
+- 详见：[AI Coding 安全与合规](../03-security/01-ai-coding-security.md) 4.5 节。
 
 ### 3.5 效率与成本问题
 
@@ -822,6 +827,7 @@ AI 参与代码生成和修改后，团队可能缺少完整的过程记录和�
 - 在 PR 模板中加入“AI 参与范围”字段，由 CI 检查该字段已填写；提交信息可以使用约定的 commit trailer 标注。
 - 保留 Agent 的操作日志和工具调用记录。
 - 通过统一的模型访问网关，只允许调用已批准的模型服务，并在发送前过滤敏感数据。
+- 详见：[AI Coding 安全与合规](../03-security/01-ai-coding-security.md) 4.6 节。
 
 #### 32. 效果难以评估（Difficulty in Measuring Effectiveness）
 
@@ -965,7 +971,7 @@ AI 生成代码时可能只关注正常执行流程，没有充分考虑系统�
 | Architecture Constraints | 架构边界、模块职责和依赖约束 | 03、08、10、23 |
 | Code Quality Gate | 静态检查、代码审查和规范校验 | 07、09、11、12、28 |
 | [Testing & Evaluation](../02-verification/01-ai-coding-verification.md) | 测试策略、自动化评测和验证可信度 | 17、18、19、32 |
-| Security & Compliance | 安全扫描、依赖治理和审计 | 13、14、15、16、31 |
+| [Security & Compliance](../03-security/01-ai-coding-security.md) | 安全扫描、依赖治理和审计 | 13、14、15、16、31 |
 | Workflow Engineering | 任务拆分、工具调用和交付流程 | 20、21、22、24、27、29 |
 | Runtime Reliability | 可观测性、数据一致性和故障恢复 | 33、34、35、36 |
 
