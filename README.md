@@ -48,6 +48,7 @@
 | AI Coding Requirements | 澄清优先、结构化规约、代码考古、依赖血缘与红队评审 | 初稿 |
 | AI Coding Workflow | 分级路由、产物接力、隔离红队、执行循环的边界与六阶段闭环 | 初稿 |
 | AI Coding Quality Gate | 四层漏斗、防作弊门禁、架构与契约门禁、增量变异测试、语义审计 | 初稿 |
+| AI Coding Context | 四层存储金字塔、按角色配餐与隔离、保鲜与降噪、知识回流与度量 | 初稿 |
 
 **当前文章**
 
@@ -58,6 +59,7 @@
 - [AI Coding 需求工程：别让 AI 顺着错误的需求狂奔](./02-ai-coding/05-requirements/01-ai-coding-requirements.md)
 - [AI Coding 工作流：既不是新瀑布，也不放任 Agent](./02-ai-coding/06-workflow/01-ai-coding-workflow.md)
 - [AI Coding 代码质量门禁：别让“看起来对”通过审查](./02-ai-coding/07-quality-gate/01-ai-coding-quality-gate.md)
+- [AI Coding 上下文工程：既不能忘，也不能塞满](./02-ai-coding/08-context/01-ai-coding-context.md)
 
 ## 后续规划
 
