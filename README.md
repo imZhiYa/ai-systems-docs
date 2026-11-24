@@ -47,7 +47,7 @@
 **当前文章**
 
 - [AI Coding 常见问题与治理要点](./02-ai-coding/01-problems/01-ai-coding-common-problems.md)
-- [AI Coding 验证体系：让“已通过”真正可信](./02-ai-coding/02-verification/01-ai-coding-verification.md)
+- [AI Coding 验证体系：当开发过程变成黑盒](./02-ai-coding/02-verification/01-ai-coding-verification.md)
 
 ## 后续规划
 
