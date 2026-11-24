@@ -418,6 +418,6 @@ for case in cases:
 - [AI Coding 常见问题与治理要点](../01-problems/01-ai-coding-common-problems.md)：本文对应的问题定义
 - Zhong, Raghunathan, Carlini, [ImpossibleBench: Measuring LLMs' Propensity of Exploiting Test Cases](https://arxiv.org/abs/2510.20270)：用需求与测试相互矛盾的任务，衡量 LLM Agent 利用测试用例走捷径的倾向
 - [DORA](https://dora.dev/)：软件交付效能研究，变更失败率等指标的来源
-- 下一篇（规划中）：Security & Compliance——依赖治理、提示词注入防护与审计
+- 下一篇：[AI Coding 安全与合规：当 Agent 也成为攻击面](../03-security/01-ai-coding-security.md)
 
 > **最后一句：开发过程变成黑盒之后，“已通过”不能再靠信任。验证体系的价值，是在看不清过程的情况下，让每一个“通过”都经得起复查。**
