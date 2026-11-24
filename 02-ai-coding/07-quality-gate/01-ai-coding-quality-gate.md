@@ -133,7 +133,7 @@ Agent 在开发容器中先跑一遍 Layer 0 到 Layer 2 的同一套检查，�
 | 09 编码规范不一致 | 格式化与 Lint 自动修复、项目自定义规则 | 5.1、5.2.2 |
 | 11 代码正确性不足 | 规约 BDD、增量变异测试、语义审计 | 5.3.1、5.4 |
 | 12 代码健壮性不足 | 禁止吞异常、静态分析、模糊测试 | 5.2.1、5.3.2 |
-| 28 审查速度失衡 | 语义审计生成审查导航、按风险分配审查 | 5.4、7.5 |
+| 28 生成速度与理解速度失衡 | 语义审计生成审查导航、按风险分配审查 | 5.4、7.5 |
 | 17 绕过测试 | 验收测试目录写保护、禁止新增抑制和跳过 | 5.2.1 |
 | 10 重复建设 | 增量重复率、新增依赖数量 | 5.2.1 |
 | 14 依赖幻觉 | 新增依赖存在性检查 | 5.1 |
@@ -192,7 +192,7 @@ repos:
 
 | 检查 | 拦什么 |
 | --- | --- |
-| 验收测试目录写保护 | Code Agent 修改或删除 Test Agent 依据 `03-spec.md` 生成的验收测试。Code Agent 要么修实现让测试通过，要么提出修改 Spec，不能改“试卷” |
+| 验收测试目录写保护 | Code Agent 修改或删除 Test Agent 依据 `03-spec.md` 生成、放在 `tests/spec-bdd/` 的规约测试。Code Agent 要么修实现让测试通过，要么提出修改 Spec，不能改“试卷” |
 | 禁止新增抑制与跳过 | 本次 diff 新增的 `@ts-ignore`、`eslint-disable`、`@SuppressWarnings`、`# noqa`、`# type: ignore`、`NOSONAR`、`@Disabled`、`.skip(`、`.only(` 等；带豁免标记的，转为人工确认 |
 | 禁止吞异常 | 新增的空 catch 块、`except ...: pass`；catch 中只打日志、却返回 `null`、`true` 或成功状态码伪装成功的写法，用 Semgrep 规则补充 |
 | 防重复与膨胀 | 新增代码的重复率（CPD 或 Sonar 的增量规则）、单个 PR 新增外部依赖的数量、没有任何引用的新增代码 |
@@ -212,7 +212,7 @@ import json
 import re
 import sys
 
-PROTECTED_TESTS = ["tests/spec-bdd/*", "tests/acceptance/*"]
+PROTECTED_TESTS = ["tests/spec-bdd/*"]
 WAIVER = re.compile(r"ARCH-WAIVER\([A-Z]+-\d+\)")      # 例如 ARCH-WAIVER(QA-123)：原因
 SUPPRESSIONS = [
     r"@ts-ignore", r"@ts-nocheck", r"@ts-expect-error", r"eslint-disable",
@@ -294,7 +294,7 @@ if __name__ == "__main__":
 
 这个脚本基于文本匹配：字符串里出现 `.skip(` 会被误报；把异常处理写成多行、或者在 catch 里只写一行日志，它都发现不了。所以它只负责最常见的绕过方式，更复杂的写法交给 Semgrep 或 AST 规则，最终还要靠变异测试（5.3.1）检验测试是否真的有效。
 
-验收测试目录除了这个脚本，还应该用工作流 6.1 节任务卡的 `forbidden_paths` 和 CODEOWNERS 双重保护。
+验收测试目录除了这个脚本，还应该用工作流 6.1 节任务卡的 `forbidden_paths` 和 CODEOWNERS 双重保护。这里保护的是 `tests/spec-bdd/` 下的规约测试：Agent 看得到，但不能改。验证体系 4.1 节的隐藏验收测试则不放在 Agent 可见的位置，两者配合使用。
 
 #### 5.2.2 编译、类型与项目规范（问题 07、09）
 

@@ -419,7 +419,7 @@ AI 负责把所有问题逼出来，人负责做权衡，并对决策负责。
 
 ```markdown
 ---
-spec_id: ORDER-ADDR-002
+spec_id: FEAT-2048
 status: frozen          # draft / in-review / frozen
 frozen_at: 2026-11-24
 approved_by: [张三, 李四]
