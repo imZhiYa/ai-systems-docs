@@ -11,7 +11,7 @@
 | [AI Coding 安全与合规：当 Agent 也成为攻击面](./03-security/01-ai-coding-security.md) | 生成代码安全、依赖治理、提示词注入防护、权限控制与审计 | 初稿 |
 | [AI Coding 运行可靠性：AI 看不到的生产环境](./04-runtime/01-ai-coding-runtime-reliability.md) | 生产上下文左移、确定性验证与仿真、运行时防御与渐进发布、生产反馈闭环 | 初稿 |
 | [AI Coding 需求工程：别让 AI 顺着错误的需求狂奔](./05-requirements/01-ai-coding-requirements.md) | 澄清优先、结构化规约、代码考古与规则账本、依赖血缘、红队事前验尸 | 初稿 |
-| [AI Coding 工作流：给 Agent 的执行循环装上边界](./06-workflow/01-ai-coding-workflow.md) | 任务卡与范围控制、环境一致性、调试循环收敛、并行与重试、人工检查点 | 初稿 |
+| [AI Coding 工作流：既不是新瀑布，也不放任 Agent](./06-workflow/01-ai-coding-workflow.md) | 分级路由、产物接力、隔离红队、测试与编码隔离、执行循环的边界、六阶段闭环 | 初稿 |
 
 ## 内容范围
 
