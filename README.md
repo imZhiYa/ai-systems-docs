@@ -49,6 +49,7 @@
 | AI Coding Workflow | 分级路由、产物接力、隔离红队、执行循环的边界与六阶段闭环 | 初稿 |
 | AI Coding Quality Gate | 四层漏斗、防作弊门禁、架构与契约门禁、增量变异测试、语义审计 | 初稿 |
 | AI Coding Context | 四层存储金字塔、按角色配餐与隔离、保鲜与降噪、知识回流与度量 | 初稿 |
+| AI Coding Architecture | 模块地图与生成的依赖规则、平台原语、抽象预算、技术债偿还与架构演进 | 初稿 |
 
 **当前文章**
 
@@ -60,6 +61,7 @@
 - [AI Coding 工作流：既不是新瀑布，也不放任 Agent](./02-ai-coding/06-workflow/01-ai-coding-workflow.md)
 - [AI Coding 代码质量门禁：别让“看起来对”通过审查](./02-ai-coding/07-quality-gate/01-ai-coding-quality-gate.md)
 - [AI Coding 上下文工程：既不能忘，也不能塞满](./02-ai-coding/08-context/01-ai-coding-context.md)
+- [AI Coding 架构约束：让正确的路成为最省力的路](./02-ai-coding/09-architecture/01-ai-coding-architecture.md)
 
 ## 后续规划
 
@@ -67,7 +69,7 @@
 
 - **Skill Engineering**：真实任务提取 Skill、Description 路由与评测、`SKILL.md` 结构、References / Scripts 的组织方式、安全边界与迭代机制。
 - **Agent Architecture**：Agent Harness、任务状态管理、工具执行治理、多 Agent 协作与失败恢复。
-- **AI Coding Engineering**：需求理解、代码复用、质量门禁、自动化验证与生产可靠性。
+- **AI Coding Engineering**：问题清单和 8 个治理方向的实践文章已完成初稿；后续在真实项目中运行各篇的对照实验，验证并修订治理机制。
 - **Context Engineering**：上下文预算、渐进式披露、压缩策略与上下文质量评估。
 - **Memory Engineering**：记忆生命周期、冲突消解、过期清理与记忆质量评测。
 - **RAG Engineering**：分块、索引、召回与重排，以及端到端评测。

@@ -854,5 +854,6 @@ if __name__ == "__main__":
 - Liu et al., [Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172)：长上下文中位置对信息利用的影响
 - Chroma, [Context Rot: How Increasing Input Tokens Impacts LLM Performance](https://research.trychroma.com/context-rot)：输入长度对模型表现的影响
 - [Aider：Repository map](https://aider.chat/docs/repomap.html)：用仓库地图为模型提供代码结构
+- 下一篇：[AI Coding 架构约束：让正确的路成为最省力的路](../09-architecture/01-ai-coding-architecture.md)
 
 > **最后一句：生产可靠性靠四层防线与多因素解耦，需求工程靠规约编译与红蓝对抗，代码质量门禁靠防作弊与确定性拦截；上下文工程，则把这些事实、规则、红线与权限，精准地编排进流水线的每一个节点。它决定了 AI 是一个盲人摸象的代码生成器，还是一个懂业务、敬畏生产、守住架构底线的工程协作者。**
