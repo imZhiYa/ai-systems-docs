@@ -550,5 +550,6 @@ Spec 冻结后需求如果变化，要回到第 2 步重新走一遍，并更新
 - Gary Klein, [Performing a Project Premortem](https://hbr.org/2007/09/performing-a-project-premortem)（Harvard Business Review, 2007）：事前验尸法
 - [Event Storming](https://www.eventstorming.com/)：Alberto Brandolini 提出的领域事件建模方法
 - Dan North, [Introducing BDD](https://dannorth.net/introducing-bdd/)：行为驱动开发与 Given-When-Then
+- 下一篇：[AI Coding 工作流：给 Agent 的执行循环装上边界](../06-workflow/01-ai-coding-workflow.md)
 
 > **最后一句：把这四次转换卡在写第一行代码之前。AI 让实现变得很快，所以需求阶段的错误，也会以同样的速度被放大。**
