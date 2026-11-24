@@ -78,6 +78,7 @@ AI 在持续开发过程中，无法完整保留之前的需求、技术决策�
 - 已确认的需求、技术决策和约束写进项目内的说明文件（如 `AGENTS.md`、架构决策记录），不要只留在对话里。
 - 长任务拆成有明确产出的小步骤，每一步结束时更新进度记录。
 - 上下文被压缩或切换会话后，先重新读取说明文件和进度记录，再继续工作。
+- 详见：[AI Coding 上下文工程](../08-context/01-ai-coding-context.md) 4.4、6.1 节。
 
 #### 02. 需求理解偏差（Requirement Misunderstanding）
 
@@ -696,6 +697,7 @@ AI 执行 Git、文件系统、数据库、Shell 命令和外部 API 等操作�
 - 把常用任务整理成模板或 Skill，减少每次的重复描述。
 - 记录反复出现的理解偏差，补充到说明文件中。
 - 详见：[Agent Skill 实战](../../01-agent-engineering/01-skill/01-why-skill.md)。
+- 详见：[AI Coding 上下文工程](../08-context/01-ai-coding-context.md) 4.1、6.2 节。
 
 #### 26. Token 成本高（Token Consumption）
 
@@ -719,6 +721,7 @@ AI Coding 在持续开发过程中可能重复加载大量历史对话、项目�
 - 按需读取文件和代码片段，而不是加载整个文件或目录。
 - 说明文件保持精简，低频内容拆成按需读取的参考文档。
 - 长任务定期总结进度并开启新会话，避免历史对话无限增长。
+- 详见：[AI Coding 上下文工程](../08-context/01-ai-coding-context.md) 6.3 节。
 
 #### 27. 生成等待与重试成本高（Generation and Retry Overhead）
 
@@ -819,6 +822,7 @@ AI 参与开发过程中形成的解决方案、技术决策和问题处理经�
 - 任务结束时，把重要决策和解决方案整理进项目文档或架构决策记录。
 - 代码变更时同步更新相关文档，并把文档更新列为审查项。
 - 把反复出现的问题和解决方法整理成说明文件或 Skill。
+- 详见：[AI Coding 上下文工程](../08-context/01-ai-coding-context.md) 6.4 节。
 
 #### 31. 合规与审计困难（Compliance and Auditability）
 
@@ -986,7 +990,7 @@ AI 生成代码时可能只关注正常执行流程，没有充分考虑系统�
 
 | 治理方向 | 重点关注 | 主要对应问题 |
 | --- | --- | --- |
-| Context Engineering | 上下文组织、检索、压缩和持续管理 | 01、25、26、30 |
+| [Context Engineering](../08-context/01-ai-coding-context.md) | 上下文组织、检索、压缩和持续管理 | 01、25、26、30 |
 | [Requirement Engineering](../05-requirements/01-ai-coding-requirements.md) | 需求澄清、业务规则提取和影响范围分析 | 02、04、05、06 |
 | Architecture Constraints | 架构边界、模块职责和依赖约束 | 03、08、10、23 |
 | [Code Quality Gate](../07-quality-gate/01-ai-coding-quality-gate.md) | 静态检查、代码审查和规范校验 | 07、09、11、12、28 |

@@ -865,5 +865,6 @@ jobs:
 - [oasdiff](https://github.com/oasdiff/oasdiff)、[buf breaking](https://buf.build/docs/breaking/)：OpenAPI 与 Protobuf 的破坏性变更检查
 - [PIT](https://pitest.org/)、[StrykerJS 增量模式](https://stryker-mutator.io/docs/stryker-js/incremental/)：变异测试工具
 - [diff-cover](https://github.com/Bachmann1234/diff_cover)：只针对改动行的覆盖率检查
+- 下一篇：[AI Coding 上下文工程：既不能忘，也不能塞满](../08-context/01-ai-coding-context.md)
 
 > **最后一句：AI 时代的代码质量门禁，不再是检查代码写得漂不漂亮，而是用机器的确定性规则，锁住 AI 的概率幻觉与作弊本能，把架构红线、生产真相和规约契约放在合并按钮之前。**
