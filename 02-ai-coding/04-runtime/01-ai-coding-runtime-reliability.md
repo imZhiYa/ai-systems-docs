@@ -530,5 +530,6 @@ AI 不会因为一次事故就记住教训。必须把每次生产异常转化�
 - [Hyrum's Law](https://www.hyrumslaw.com/)：接口所有可观察的行为，最终都会被某个使用者依赖
 - [OpenTelemetry](https://opentelemetry.io/)：链路追踪、指标和日志的开放标准
 - [Argo Rollouts](https://argoproj.github.io/rollouts/)：Kubernetes 上的金丝雀发布与自动分析
+- 下一篇：[AI Coding 需求工程：别让 AI 顺着错误的需求狂奔](../05-requirements/01-ai-coding-requirements.md)
 
 > **最后一句：AI 编码时代，工程团队的核心竞争力不再是写代码的速度，而是把生产环境的隐性约束显性化（给 AI 看）、自动化（让 CI 拦）、隔离化（让架构兜）的能力。AI 负责把实现成本打下来，工程体系负责把生产真相立起来。**

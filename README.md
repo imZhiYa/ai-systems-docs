@@ -45,6 +45,7 @@
 | AI Coding Verification | 测试保护、可信的验证结果与效果评估 | 初稿 |
 | AI Coding Security | 生成代码安全、依赖治理、提示词注入防护、权限控制与审计 | 初稿 |
 | AI Coding Runtime Reliability | 生产上下文左移、确定性验证、运行时防御与反馈闭环 | 初稿 |
+| AI Coding Requirements | 澄清优先、结构化规约、代码考古、依赖血缘与红队评审 | 初稿 |
 
 **当前文章**
 
@@ -52,6 +53,7 @@
 - [AI Coding 验证体系：当开发过程变成黑盒](./02-ai-coding/02-verification/01-ai-coding-verification.md)
 - [AI Coding 安全与合规：当 Agent 也成为攻击面](./02-ai-coding/03-security/01-ai-coding-security.md)
 - [AI Coding 运行可靠性：AI 看不到的生产环境](./02-ai-coding/04-runtime/01-ai-coding-runtime-reliability.md)
+- [AI Coding 需求工程：别让 AI 顺着错误的需求狂奔](./02-ai-coding/05-requirements/01-ai-coding-requirements.md)
 
 ## 后续规划
 

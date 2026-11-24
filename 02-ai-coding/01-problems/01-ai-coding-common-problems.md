@@ -101,6 +101,7 @@ AI 没有准确理解用户的真实需求，将自然语言描述错误地转�
 - 开始实现前，先让 AI 复述需求目标、范围和验收标准，确认后再写代码。
 - 需求有模糊之处时，要求 AI 列出问题并等待澄清，而不是自行假设。
 - 明确写出“不在本次范围”的内容，避免 AI 实现未被要求的功能。
+- 详见：[AI Coding 需求工程](../05-requirements/01-ai-coding-requirements.md) 4.1 节。
 
 #### 03. 跨文件与跨模块理解不足（Cross-Module Understanding）
 
@@ -148,6 +149,7 @@ AI 主要关注当前文件或局部代码，缺乏对整个项目结构、模�
 - 用枚举、状态机、校验函数等方式在代码中固化关键规则，让违反规则的实现无法通过编译或测试。
 - 涉及核心业务的改动，由熟悉业务的人审查规则是否被遵守。
 - 详见：[AI Coding 运行可靠性](../04-runtime/01-ai-coding-runtime-reliability.md) 4.1 节。
+- 详见：[AI Coding 需求工程](../05-requirements/01-ai-coding-requirements.md) 4.2 节。
 
 #### 05. 业务因果链断裂（Business Causality Gap）
 
@@ -171,6 +173,7 @@ AI 能够理解单个业务操作，却无法完整识别多个业务事件之�
 - 用时序图或事件流程图描述跨系统业务链路，作为 AI 的输入上下文。
 - 实现前先列出链路中每个步骤的前置条件、完成后的状态和失败处理方式。
 - 为完整链路编写端到端测试，并在 CI 中运行，而不只是测试单个接口。
+- 详见：[AI Coding 需求工程](../05-requirements/01-ai-coding-requirements.md) 4.3 节。
 
 #### 06. 迎合用户与缺少质疑（Sycophancy）
 
@@ -194,6 +197,7 @@ AI 倾向于认同用户的判断和方案。即使用户给出的前提、技�
 - 在 Agent 说明文件中写明：发现用户的方案或判断有明显问题时，先指出风险和替代方案，再执行。
 - 提问时避免预设结论，例如问“这个 Bug 可能由什么导致”，而不是“帮我按 X 的思路修复”。
 - 对关键技术决策，要求 AI 至少给出一个反对理由或替代方案。
+- 详见：[AI Coding 需求工程](../05-requirements/01-ai-coding-requirements.md) 4.4 节。
 
 **参考**
 
@@ -972,7 +976,7 @@ AI 生成代码时可能只关注正常执行流程，没有充分考虑系统�
 | 治理方向 | 重点关注 | 主要对应问题 |
 | --- | --- | --- |
 | Context Engineering | 上下文组织、检索、压缩和持续管理 | 01、25、26、30 |
-| Requirement Engineering | 需求澄清、业务规则提取和影响范围分析 | 02、04、05、06 |
+| [Requirement Engineering](../05-requirements/01-ai-coding-requirements.md) | 需求澄清、业务规则提取和影响范围分析 | 02、04、05、06 |
 | Architecture Constraints | 架构边界、模块职责和依赖约束 | 03、08、10、23 |
 | Code Quality Gate | 静态检查、代码审查和规范校验 | 07、09、11、12、28 |
 | [Testing & Evaluation](../02-verification/01-ai-coding-verification.md) | 测试策略、自动化评测和验证可信度 | 17、18、19、32 |
