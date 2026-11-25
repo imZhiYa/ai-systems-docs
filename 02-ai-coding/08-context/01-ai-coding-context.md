@@ -15,7 +15,7 @@
 | 核心定义 | 在工作流的每个节点，动态编译出一个**最小完备、事实锚定、防污染、安全脱敏**的上下文包 |
 | 四层金字塔 | C0 常驻宪法层 → C1 路径与领域按需挂载层 → C2 图谱与工具检索层 → C3 任务工作内存与产物层 |
 | 按角色配餐 | 每个 Agent 角色有上下文白名单和黑名单；不给 AI 看什么，往往比给它看什么更重要 |
-| 关键机制 | 交接简报与洁净室重启、说明文件保鲜检查、工具输出降噪、token 预算、知识回流、真相优先级、生产载荷脱敏与隔离 |
+| 关键机制 | 交接简报与洁净室重启、说明文件保鲜检查、定位与读取分离、工具输出降噪、token 预算、知识回流、真相优先级、生产载荷脱敏与隔离 |
 | 度量 | 翻车三分法归因（召回缺失 / 噪声淹没 / 该写成代码）；门禁一次通过率、工具调用步数与 token、过期引用率 |
 | 不要做 | 把整个代码库和文档塞进窗口；只靠向量检索；在 C0 里堆规则；把原始日志直接喂给 Agent；让 Agent 把未经审查的内容写回上下文 |
 
@@ -97,6 +97,8 @@
 ### 3.2 分层加载：常驻的越少越好
 
 始终加载的内容，会出现在每一次调用里，成本和干扰都最大。只有真正全局通用的内容才常驻，其余按路径、按任务、按需要加载。
+
+搜索也要按需：搜索先返回位置，由 Agent 决定读哪里，再只读需要的那一小块，而不是把所有命中的内容一次放进上下文（见 6.3）。
 
 ### 3.3 最小知情：不给看什么，比给看什么更重要
 
@@ -520,7 +522,153 @@ if __name__ == "__main__":
 
 ### 6.3 上下文预算与降噪（问题 26）
 
-**机制一：先给骨架地图，再按需读全文。** 不要一上来就把几十个完整文件塞进上下文。先用 Tree-sitter 等工具生成轻量的仓库地图（Repo Map）：只包含文件路径、类名、函数签名和关键注释，例如 Aider 就会把这样一份地图随每次请求发给模型。Agent 在地图上定位到关键符号后，再精确读取那几十行代码。
+**机制一：定位与读取分离。**
+
+最常见的“塞满”，来自一次搜索：用 grep 搜一个常见的关键字，命中几百处，每处连同前后文一起进入上下文，大部分和任务无关。IDE 的做法正好相反：搜索只返回**位置**（文件、行号、符号名），开发者看完位置再决定点开哪一处，只读那几十行；需要更多时，再顺着调用方、被调用方往外扩。
+
+把这个做法写成所有搜索工具的约定：**搜索返回位置，不返回内容；读什么由 Agent 根据位置决定，一次只读一小块。**
+
+| | 全量搜索 | 定位与读取分离 |
+| --- | --- | --- |
+| 搜索返回什么 | 所有命中的行和前后文 | 文件、行号、符号名，加上命中数量 |
+| 谁决定读什么 | 搜索结果直接进入上下文 | Agent 看完位置列表再决定 |
+| 命中很多时 | 上下文被挤满 | 只返回数量和按目录的分布，要求缩小范围 |
+| 上下文怎么增长 | 一次性涨满 | 一步一步增长，每一步都有选择 |
+
+**检索的优先顺序：** 从精确到粗略，前一种找不到时再用后一种。
+
+| 顺序 | 工具 | 返回什么 | 适用 |
+| --- | --- | --- | --- |
+| 1 | 符号索引：跳转到定义、查找引用、调用层级（LSP） | 符号的位置 | 知道类名、方法名、字段名 |
+| 2 | 结构化搜索：AST、Tree-sitter 查询、Semgrep | 匹配某种代码结构的位置 | 找一类写法，例如“所有在事务内发起外部调用的地方” |
+| 3 | 文本搜索，只看位置：下面的脚本、`rg -l`（只列文件）、`rg -c`（只给数量） | 文件、行号、命中数量 | 关键字是字符串、配置项、错误码、日志文本 |
+| 4 | 按范围读取：一个符号，或某个位置前后几十行 | 代码 | 已经确定要看哪里 |
+| 入口未知时 | 仓库地图、目录说明、语义搜索 | 候选入口 | 不知道关键字，例如“折扣在哪里计算” |
+
+**搜索结果的格式约定：**
+
+- 只返回位置：文件、行号、符号名，最多附一行截断的预览，不返回代码块。
+- 有数量上限（例如 30 条）。超过上限时不返回位置，只返回总数和按目录的分布，并提示怎样缩小范围——像 IDE 的“查找用法”按模块分组那样。
+- 没有命中时，提示换关键字或换工具，而不是只返回空。
+- 读取时指定范围：读一个符号，或者某个位置前后几十行；需要更多时再往外扩。
+
+文本搜索可以在 ripgrep 外面包一层，按这个约定输出：
+
+```python
+#!/usr/bin/env python3
+"""定位优先的文本搜索：只返回位置；命中过多时只返回按目录的分布，由 Agent 决定下一步读什么。
+
+用法：python locate.py <关键字或正则> [路径 ...] [--limit 30] [-- 其他 rg 参数]
+  例：python locate.py cancelOrder src --limit 30 -- -w -t java
+依赖：ripgrep（rg）。输出 JSON：位置列表，或命中过多时的分布；不输出代码块。
+"""
+import argparse
+import collections
+import json
+import pathlib
+import subprocess
+import sys
+
+PREVIEW_CHARS = 80
+TOP_DIRECTORIES = 15
+
+
+def run_rg(args):
+    result = subprocess.run(["rg", *args], capture_output=True, text=True)
+    if result.returncode not in (0, 1):          # 退出码 1 表示没有命中
+        raise SystemExit(result.stderr.strip())
+    return result.stdout
+
+
+def parse_counts(text):
+    """解析 rg --count --with-filename 的输出：每行“路径:命中行数”。"""
+    counts = {}
+    for line in text.splitlines():
+        path, _, n = line.rpartition(":")
+        if path and n.isdigit():
+            counts[path] = int(n)
+    return counts
+
+
+def parse_hits(text):
+    """解析 rg --json 的输出，只保留位置和截断后的单行预览。"""
+    hits = []
+    for line in text.splitlines():
+        event = json.loads(line)
+        if event.get("type") != "match":
+            continue
+        data = event["data"]
+        preview = data.get("lines", {}).get("text", "").strip()
+        hits.append({
+            "file": data["path"].get("text", ""),
+            "line": data["line_number"],
+            "preview": preview[:PREVIEW_CHARS] + ("…" if len(preview) > PREVIEW_CHARS else ""),
+        })
+    return hits
+
+
+def distribution(counts, depth=2):
+    """按目录前 depth 层汇总命中数，从多到少排列。"""
+    groups = collections.Counter()
+    for path, n in counts.items():
+        parts = pathlib.PurePosixPath(path.replace("\\", "/")).parts[:-1]
+        groups["/".join(parts[:depth]) or "."] += n
+    return [{"directory": d, "matches": n} for d, n in groups.most_common(TOP_DIRECTORIES)]
+
+
+def locate(pattern, paths, limit=30, extra=(), run=run_rg):
+    query = [*extra, "-e", pattern, *paths]
+    counts = parse_counts(run(["--count", "--with-filename", *query]))
+    total = sum(counts.values())
+    if total == 0:
+        return {"pattern": pattern, "total": 0,
+                "hint": "没有命中：换一个关键字，或改用符号索引、仓库地图寻找入口"}
+    if total > limit:
+        return {"pattern": pattern, "total": total, "files": len(counts),
+                "by_directory": distribution(counts),
+                "hint": f"命中 {total} 处，超过上限 {limit}，未返回位置。请缩小范围："
+                        "限定目录或文件类型（如 -t java）、整词匹配（-w）、换用更具体的关键字，"
+                        "或改用符号索引的“查找引用”"}
+    return {"pattern": pattern, "total": total, "hits": parse_hits(run(["--json", *query])),
+            "hint": "选出与任务相关的位置，只读取该位置前后几十行；需要时再顺着调用关系往外扩"}
+
+
+def main():
+    argv = sys.argv[1:]
+    extra = argv[argv.index("--") + 1:] if "--" in argv else []
+    argv = argv[:argv.index("--")] if "--" in argv else argv
+    parser = argparse.ArgumentParser()
+    parser.add_argument("pattern")
+    parser.add_argument("paths", nargs="*", default=["."])
+    parser.add_argument("--limit", type=int, default=30)
+    args = parser.parse_args(argv)
+    json.dump(locate(args.pattern, args.paths, args.limit, extra), sys.stdout, ensure_ascii=False, indent=2)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+把它注册成 Agent 可以调用的工具，并在 C0 的索引地图中写明“文本搜索使用 `scripts/locate.py`”，代替直接执行 grep。
+
+**一次按需加载的过程**，以“修改地址前校验订单状态”为例：
+
+```text
+1. 定位：查找 cancelOrder 的引用 → 7 处，分布在 order/api、order/address、refund 三个目录
+2. 挑选：任务只涉及修改地址，与 order/address 下的 2 处有关
+3. 读取：读取 AddressService.change() 这一个方法，约 40 行
+4. 扩展：change() 调用了 OrderStateGuard.check()，再读取这个方法
+```
+
+整个过程中，进入上下文的只有一份位置列表和两个方法，而不是 7 处命中的全部前后文。
+
+**仓库地图用来找入口。** 不知道关键字时（顺序表的最后一行），先看仓库地图：用 Tree-sitter 等工具生成的轻量结构，只包含文件路径、类名、函数签名和关键注释，例如 Aider 就会把这样一份地图随每次请求发给模型。Agent 在地图上找到入口符号后，再回到上面的顺序逐步定位。
+
+这个做法也有局限：
+
+- **要先知道关键字或入口。** 只有业务描述、没有关键字时，需要先用仓库地图、目录说明或语义搜索找到入口。
+- **索引有盲区。** 反射、配置注入、动态调用，符号索引找不到（见 [AI Coding 架构约束](../09-architecture/01-ai-coding-architecture.md) 第 8 节）；索引过期也会定位错。
+- **步数会变多。** 一次全量搜索变成“定位、挑选、读取”几步，工具调用次数会增加。这是用步数换上下文的质量：7.2 节的“工具调用步数”和“有效 token 成本”要一起看。如果定位经常要绕很多步，说明 C0 的索引地图或仓库地图不够好。
 
 **机制二：工具输出降噪管道。** 一次测试或构建失败，可能输出上万 token 的框架堆栈和启动日志。把原始日志直接交给 Agent，有用的信息会被淹没在中间。在所有命令行和 CI 工具与 Agent 之间，加一层确定性的解析器，只保留：失败的用例名、期望值与实际值、业务代码层的十几行关键堆栈、门禁规则编号和推荐的修法（格式见质量门禁 7.1 节）。以 JUnit XML 报告为例：
 
@@ -817,6 +965,7 @@ if __name__ == "__main__":
 | Agent 反复尝试已经证伪的方向 | 压缩后丢了排除信息 | 交接简报必须包含“已证伪的方向” |
 | 每次任务都要重新讲一遍项目背景 | 没有 C0 / C1，或内容不全 | 补说明文件；反复出现的纠正写进对应层级 |
 | 说明文件很长，Agent 仍然漏掉关键规则 | C0 过大，噪声淹没 | 精简 C0，局部规则移到 C1；关键约束放在开头 |
+| 一次搜索就把上下文塞满 | 搜索直接返回所有命中的行和前后文 | 定位与读取分离：搜索只返回位置，超过上限只返回分布，再按需读取 |
 | 一次测试失败，上下文就被日志塞满 | 原始日志直接交给 Agent | 工具输出降噪管道 |
 | 支付规则出现在前端任务的上下文里 | 没有按路径挂载 | 按路径生效的规则；上下文编译器按改动路径选择 C1 |
 | Agent 引用了过时的文档 | 文档没人维护，向量检索召回了旧内容 | 引用保鲜检查；真相优先级；动态信息自动生成 |
